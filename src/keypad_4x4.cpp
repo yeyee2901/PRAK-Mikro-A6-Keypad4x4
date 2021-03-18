@@ -15,6 +15,16 @@ char LOOKUP_KEYPAD[4][4] = {
 {'*', '0', '#', 'D'}
 };
 
+/*
+Initialize keypad using PORT specified.
+In this particular library, the pin mapping is as shown:
+    Px0 - Px3 -> KEYPAD_ROW
+    Px4 - Px7 -> KEYPAD_COLUMN
+
+You are free to change the pin mapping as needed, but it's preferable
+if you don't. Otherwise, if you really need to, adjust the scan_keypad() function
+to suit your needs.
+*/
 void keypad_init(volatile uint8_t *kypd_bus,
                  volatile uint8_t *kypd_dir,
                  volatile uint8_t *kypd_in,
@@ -34,14 +44,22 @@ void keypad_init(volatile uint8_t *kypd_bus,
     MCUCR |= interrupt_trig;
 
 }
+
+/*
+Scan the keypad. After this function finishes,
+the char array keypad_buffer[] will be updated.
+This function by itself does not display it on the LCD,
+it only scan-update the array.
+You need to display it on the LCD to see the changes.
+*/
 void scan_keypad(){
   uint8_t row_buf, col_buf;
   keypad_event_count++;
 
   // SCAN ROW ---------------------------------------------------------------
   // ubah baris menjadi input enable pull up, kolom = out, set all kolom LOW
-  *KEYPAD_DIR = 0xF0;
-  *KEYPAD_BUS = 0x0F;
+  *KEYPAD_DIR = ~KEYPAD_ROW;
+  *KEYPAD_BUS = KEYPAD_ROW;
 
   // baca kondisi row
   delayMicroseconds(16);
@@ -65,14 +83,14 @@ void scan_keypad(){
 
   // SCAN COLUMN ------------------------------------------------------------
   // ubah kolom menjadi input enable pull up, baris = out, set all baris LOW
-  *KEYPAD_DIR = 0x0F;
-  *KEYPAD_BUS = 0xF0;
+  *KEYPAD_DIR = ~KEYPAD_COLUMN;
+  *KEYPAD_BUS = KEYPAD_COLUMN;
 
-  // baca kondisi row
+  // baca kondisi kolom
   delayMicroseconds(16);
   col_buf = (*KEYPAD_IN & KEYPAD_COLUMN) >> 4;
 
-  // interpretasi row mana yang ditekan
+  // interpretasi kolom mana yang ditekan
   switch(col_buf){
     case 0b1110:
       scanned_column = 0;
