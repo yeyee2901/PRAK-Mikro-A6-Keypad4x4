@@ -18,6 +18,7 @@ char LOOKUP_KEYPAD[4][4] = {
 /*
 Initialize keypad using PORT specified.
 In this particular library, the pin mapping is as shown:
+
     Px0 - Px3 -> KEYPAD_ROW
     Px4 - Px7 -> KEYPAD_COLUMN
 
@@ -42,7 +43,6 @@ void keypad_init(volatile uint8_t *kypd_bus,
 
     GICR |= (1 << interrupt_sense);
     MCUCR |= interrupt_trig;
-
 }
 
 /*
@@ -51,6 +51,9 @@ the char array keypad_buffer[] will be updated.
 This function by itself does not display it on the LCD,
 it only scan-update the array.
 You need to display it on the LCD to see the changes.
+
+*NOTE: The buffer is RIGHT ALIGNED, meaning it behaves like
+an 'old calculator' on the display LCD
 */
 void scan_keypad(){
   uint8_t row_buf, col_buf;
