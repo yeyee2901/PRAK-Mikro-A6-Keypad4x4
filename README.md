@@ -125,4 +125,4 @@ Apabila anda ingin mencoba simulasi pada Proteus, anda bisa melakukannya. Tetap 
 6. Lalu pada bagian Program File, paste path dari file **firmware.hex** tadi. Atau anda juga dapat memilihnya secara manual dengan meng-klik icon folder di sampingnya
 7. Klik tombol play untuk memulai simulasi
 
-**Catatan keras**: Proteus +/= real hardware, karena delay max proteus juga terbatas. Banyak kasus dari praktikan lain yang mengalami output berbeda dengan ekspektasi bila program dijalankan di real hardware-nya
+**Catatan keras**: Proteus =/= real hardware, karena delay max proteus juga terbatas. Banyak kasus dari praktikan lain yang mengalami output berbeda dengan ekspektasi bila program dijalankan di real hardware-nya
