@@ -110,3 +110,18 @@ if(keypad_sense_flag){
 - Jika anda ingin build manual, copas saja code dari main.cpp , driver_LCD16x2.cpp , driver_LCD16x2.hpp ke IDE yang anda gunakan dan silahkan setup sendiri sesuai IDE masing-masing
 - Bila anda masih menggunakan Arduino IDE untuk embedded development, author sarankan untuk pindah ke PlatformIO saja karena PlatformIO support banyak varian board tidak hanya Arduino family saja. Ada mulai dari ARM STM32, Atmel AVR (pure), TI - MSP430, dan masih banyak lagi (>900 board mikrokontroler). 
 - Selain karena support board-nya yang banyak, IDE ini juga ramah (code completion, pre-compile syntax check, dll) karena terintegrasi ke VSCode. Ada juga fitur version control menggunakan git yang terintegrasi pada VSCode nya
+
+**FOR PROTEUS SIMULATOR USERS**
+Apabila anda ingin mencoba simulasi pada Proteus, anda bisa melakukannya. Tetap sama seperti biasa, anda harus build project ini.
+1. Pergi ke Folder Project-nya
+2. Pergi ke folder .pio/build/ATMega16, di dalam folder ini terdapat file bernama **firmware.hex**, copy path dari file tersebut
+3. Buka Proteus dan buat skematik seperti skematik yang disertakan pada Folder Project ini.
+4. Klik 2x pada MCU-nya, anda akan mendapati tampilan properties dari MCU, kurang lebih seperti dibawah ini (sumber: google image)
+
+![image](https://user-images.githubusercontent.com/55247343/111795758-10ccf080-88fa-11eb-9bd1-75a09c1d1b1e.png)
+
+5. Atur clock frequency agar menjadi Internal RC 1MHz (pada bagian CKSEL), karena kita menggunakan internal CPU clock, tidak menggunakan oscillator external
+6. Lalu pada bagian Program File, paste path dari file **firmware.hex** tadi. Atau anda juga dapat memilihnya secara manual dengan meng-klik icon folder di sampingnya
+7. Klik tombol play untuk memulai simulasi
+
+**Catatan keras**: Proteus +/= real hardware, karena delay max proteus juga terbatas. Banyak kasus dari praktikan lain yang mengalami output berbeda dengan ekspektasi bila program dijalankan di real hardware-nya
