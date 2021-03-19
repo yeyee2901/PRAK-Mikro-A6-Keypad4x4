@@ -112,6 +112,7 @@ if(keypad_sense_flag){
 - Selain karena support board-nya yang banyak, IDE ini juga ramah (code completion, pre-compile syntax check, dll) karena terintegrasi ke VSCode. Ada juga fitur version control menggunakan git yang terintegrasi pada VSCode nya
 
 **FOR PROTEUS SIMULATOR USERS**
+
 Apabila anda ingin mencoba simulasi pada Proteus, anda bisa melakukannya. Tetap sama seperti biasa, anda harus build project ini.
 1. Pergi ke Folder Project-nya
 2. Pergi ke folder .pio/build/ATMega16, di dalam folder ini terdapat file bernama **firmware.hex**, copy path dari file tersebut
